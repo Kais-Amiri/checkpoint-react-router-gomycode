@@ -18,12 +18,6 @@ function App() {
         <Star rating={starSearch} setStarSearch={setStarSearch} />
       </header>
       {}
-      {/* <MovieList
-        myMovies={Movies}
-        setmyMovie={setmyMovie}
-        inputSearch={inputSearch}
-        starSearch={starSearch}
-      /> */}
 
       <Route
         exact
