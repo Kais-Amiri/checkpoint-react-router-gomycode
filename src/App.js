@@ -1,23 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import MovieList from "./components/moviesList/MovieList";
+import { myMovies } from "./Data/Data";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
+import Star from "./components/starComponent/Star";
+import { Route } from "react-router-dom";
+import { MovieDesc } from "./components/Moviedescription/MovieDesc";
 
 function App() {
+  const [Movies, setmyMovie] = useState(myMovies);
+  const [inputSearch, setInputSearch] = useState("");
+  const [starSearch, setStarSearch] = useState(null);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <input type="text" onChange={(e) => setInputSearch(e.target.value)} />
+        <Star rating={starSearch} setStarSearch={setStarSearch} />
       </header>
+      {}
+      {/* <MovieList
+        myMovies={Movies}
+        setmyMovie={setmyMovie}
+        inputSearch={inputSearch}
+        starSearch={starSearch}
+      /> */}
+
+      <Route
+        exact
+        path="/"
+        render={() => (
+          <MovieList
+            myMovies={Movies}
+            setmyMovie={setmyMovie}
+            inputSearch={inputSearch}
+            starSearch={starSearch}
+          />
+        )}
+      />
+
+      <Route
+        exact
+        path="/description/:movieId"
+        render={(props) => <MovieDesc moviesList={Movies} {...props} />}
+      />
     </div>
   );
 }
